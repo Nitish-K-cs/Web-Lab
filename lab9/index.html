@@ -50,29 +50,41 @@
 
     </style>
     <script type="text/javascript">
-      function validate() {
-        var uid = document.getElementById("uid").value;
-        var name = document.getElementById("name").value;
-        var pass = document.getElementById("pass").value;
-        var email = document.getElementById("email").value;
-        if (uid.length < 5 || uid.length > 12) {
-          alert("User ID must be 5-12 characters.");
-          return false;
-        }
-        if (!/^[A-Za-z ]{8,}$/.test(name)) {
-          alert("Name must be alphabets only & at least 8 characters.");
-          return false;
-        }
-        if (!/^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-zA-Z0-9]).{8}$/.test(pass)) {
-          alert("Password must be 8 chars, incl. 1 uppercase, 1 special char.");
-          return false;
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          alert("Invalid Email.");
-          return false;
-        }
-        alert("Registration Successful!");
-      }
+	function validate() {
+	  var uid = document.getElementById("uid").value.trim();
+	  var name = document.getElementById("name").value.trim();
+	  var pass = document.getElementById("pass").value;
+	  var email = document.getElementById("email").value.trim();
+
+	  // 1. User ID Validation (5-12 chars)
+	  if (uid.length < 5 || uid.length > 12) {
+	    alert("User ID must be 5-12 characters.");
+	    return false;
+	  }
+
+	  // 2. Name Validation (Letters and spaces, min 8 chars)
+	  if (!/^[A-Za-z ]{8,}$/.test(name)) {
+	    alert("Name must be alphabets and spaces only, at least 8 characters.");
+	    return false;
+	  }
+
+	  // 3. Password Validation (Min 8 chars, 1 uppercase, 1 special char)
+	  var passRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+	  if (!passRegex.test(pass)) {
+	    alert("Password must be at least 8 characters, including 1 uppercase letter and 1 special character.");
+	    return false;
+	  }
+
+	  // 4. Email Validation
+	  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+	    alert("Invalid Email.");
+	    return false;
+	  }
+
+	  alert("Registration Successful!");
+	  return true; // Explicitly return true to allow form submission
+	}
+
     </script>
   </head>
   <body>
