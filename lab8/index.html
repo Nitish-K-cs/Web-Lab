@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+  <title>Test Marks Average</title> 
+  <style type="text/css"> 
+body { 
+  font-family: Arial, sans-serif; 
+  background: #DEFCF7;
+  padding: 50px; 
+  text-align: center; 
+  min-height: 100vh;
+  box-sizing: border-box;
+} 
+h2 { 
+  color: #049439; 
+  font-size: 2.5rem;
+} 
+form { 
+  background: #ffffff; 
+  padding: 40px 50px; 
+  display: inline-block; 
+  border-radius: 12px; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+} 
+label { 
+  display: block; 
+  margin: 15px 0 5px 0; 
+  font-size: 1.1rem;
+  color: #333;
+  text-align: left;
+} 
+input[type="text"] { 
+  padding: 12px; 
+  border-radius: 6px; 
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+} 
+input#t1, input#t2, input#t3 { 
+  width: 100%; 
+} 
+input[type="button"] { 
+  background: #049439; 
+  color: white; 
+  padding: 14px 28px;   
+  margin-top: 25px; 
+  font-size: 1.2rem;
+  font-weight: bold;
+} 
+  </style> 
+  <script type="text/javascript"> 
+    function calculateAverage() { 
+      var reg = document.getElementById('reg').value; 
+      var sub = document.getElementById('sub').value; 
+      var t1 = parseFloat(document.getElementById('t1').value); 
+      var t2 = parseFloat(document.getElementById('t2').value); 
+      var t3 = parseFloat(document.getElementById('t3').value); 
+      if (reg === '' || sub === '' || isNaN(t1) || isNaN(t2) || isNaN(t3)) { 
+        alert("Please fill out all fields correctly."); 
+        return; 
+      } 
+      var scores = [t1, t2, t3]; 
+      scores.sort(); 
+      var avg = (scores[1] + scores[2]) / 2; 
+      alert("Average of Best 2 Tests: " + avg); 
+    } 
+  </script> 
+</head> 
+<body> 
+  <h2>Student Test Marks</h2> 
+  <form action="#"> 
+    <label>Register No:<input type="text" id="reg" /></label> 
+    <label>Subject Code:<input type="text" id="sub" /></label> 
+    <label>Test 1 Marks:<input type="text" id="t1" /></label> 
+    <label>Test 2 Marks:<input type="text" id="t2" /></label> 
+    <label>Test 3 Marks:<input type="text" id="t3" /></label> 
+    <input type="button" value="Calculate Average" onclick="calculateAverage()" /> 
+  </form> 
+</body> 
+</html> 
